@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "KalturaPlayerSDK"
-  s.version      = "0.8"
+  s.version      = "0.8.1"
   s.summary      = "The Kaltura player-sdk-native component enables embedding the kaltura player into native environments."
 
   #s.description  = <<-DESC
@@ -73,7 +73,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/kaltura/player-sdk-native-ios.git", :tag => "v0.8" }
+  s.source       = { :git => "https://github.com/kaltura/player-sdk-native-ios.git", :tag => "v0.8.1" }
   s.library      = 'stdc++', 'z'
   s.framework    = 'MediaPlayer', 'GoogleCast', 'SenTestingKit'
   s.dependency "google-cast-sdk", "2.3.0.1" 
