@@ -96,6 +96,7 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
         }
         return NO;
     } else if( !requestString.isFrameURL ) {
+        NSLog(@"checkIsIframe is NO, opening URL in browser: %@", request.URL);
         [[UIApplication sharedApplication] openURL: request.URL];
         return NO;
     } else {
@@ -104,6 +105,14 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     return YES;
 }
 
+
+        NSLog(@"checkIsIframeUrl returning NO");
+        
+        return NO;
+    }
+
+    return YES;
+}
 
 // Call this function when you have results to send back to javascript callbacks
 // callbackId : int comes from handleCall function
