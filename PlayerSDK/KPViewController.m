@@ -52,7 +52,7 @@ typedef NS_ENUM(NSInteger, KPActionType) {
 @property (nonatomic, strong) UIView *superView;
 @end
 
-@implementation KPViewController 
+@implementation KPViewController
 @synthesize webView;
 
 + (void)setLogLevel:(KPLogLevel)logLevel {
@@ -154,17 +154,12 @@ typedef NS_ENUM(NSInteger, KPActionType) {
     appConfigDict = extractDictionary(AppConfigurationFileName, @"plist");
     setUserAgent();
     [self initPlayerParams];
-    
-    // Pinch Gesture Recognizer - Player Enter/ Exit FullScreen mode
-    UIPinchGestureRecognizer *pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self
-                                                                                action:@selector(didPinchInOut:)];
-    [self.view addGestureRecognizer:pinch];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(handleEnteredBackground:)
                                                  name: UIApplicationDidEnterBackgroundNotification
                                                object: nil];
-    
+
     [self.view addObserver:self
                 forKeyPath:@"frame"
                    options:NSKeyValueObservingOptionNew
@@ -183,7 +178,7 @@ typedef NS_ENUM(NSInteger, KPActionType) {
         [self.webView loadRequest:[NSURLRequest requestWithURL:videoURL]];
         [self.view addSubview:self.webView];
     }
-    
+
     // Handle full screen events
     __weak KPViewController *weakSelf = self;
     [self registerReadyEvent:^{
@@ -192,7 +187,7 @@ typedef NS_ENUM(NSInteger, KPActionType) {
         } else {
             weakSelf.addEventListener(KPlayerEventToggleFullScreen, @"defaultFS", ^(NSString *eventId) {
                 weakSelf.isFullScreenToggled = !self.isFullScreenToggled;
-                
+
                 if (weakSelf.isFullScreenToggled) {
                     weakSelf.view.frame = [UIScreen mainScreen].bounds;
                     [weakSelf.topWindow addSubview:weakSelf.view];
@@ -437,9 +432,9 @@ typedef NS_ENUM(NSInteger, KPActionType) {
     } else if ([_playerController.player respondsToSelector:selector]) {
         [_playerController.player performSelector:selector withObject:args];
     }
-    
+
 #pragma clang diagnostic pop
-    
+
     KPLogTrace(@"Exit");
 }
 
@@ -448,7 +443,7 @@ typedef NS_ENUM(NSInteger, KPActionType) {
     KPLogTrace(@"Enter");
     NSString *attributeName = [args objectAtIndex:0];
     NSString *attributeVal = args[1];
-    
+
     switch ( attributeName.attributeEnumFromString ) {
         case src:
             _playerController.src = attributeVal;
@@ -508,7 +503,7 @@ typedef NS_ENUM(NSInteger, KPActionType) {
     KPLogTrace(@"Enter");
     NSString *eventName = arr[0];
     NSArray *listenersArr = self.kPlayerEventsDict[ eventName ];
-    
+
     if ( listenersArr != nil ) {
         for (NSDictionary *eDict in listenersArr) {
             ((void(^)(NSString *))eDict.allValues.lastObject)(eventName);
@@ -518,7 +513,7 @@ typedef NS_ENUM(NSInteger, KPActionType) {
 }
 
 - (void)notifyJsReady {
-    
+
     KPLogTrace(@"Enter");
     isJsCallbackReady = YES;
     NSArray *registrations = callBackReadyRegistrations.copy;
@@ -532,7 +527,7 @@ typedef NS_ENUM(NSInteger, KPActionType) {
 
 - (void)doNativeAction {
     KPLogTrace(@"Enter");
-    
+
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
     SEL nativeAction = NSSelectorFromString(nativeActionParams.actionType);
@@ -610,7 +605,7 @@ typedef NS_ENUM(NSInteger, KPActionType) {
 -(NSUInteger)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAll;
-    
+
 }
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
@@ -627,5 +622,3 @@ typedef NS_ENUM(NSInteger, KPActionType) {
     KPLogInfo(@"Dealloc");
 }
 @end
-
-
