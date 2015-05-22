@@ -10,6 +10,8 @@
 #import "NSString+Utilities.h"
 #import "KPLog.h"
 
+#define IS_IPAD  (UI_USER_INTERFACE_IDIOM()==UIUserInterfaceIdiomPad)
+
 
 @interface KPIMAPlayerViewController () <IMAWebOpenerDelegate>{
     void(^AdEventsListener)(NSDictionary *adEventParams);
@@ -251,6 +253,11 @@
 - (void)adsManagerDidRequestContentResume:(IMAAdsManager *)adsManager {
     // The SDK is done playing ads (at least for now), so resume the content.
     [self.contentPlayer play];
+    
+    if (IS_IPAD){
+        [self.adsManager destroy];
+    }
+    
     if (AdEventsListener) {
         AdEventsListener(ContentResumeRequestedKey.nullVal);
     }
