@@ -37,7 +37,7 @@ s.source       = { :git => 'https://github.com/newmaniese/player-sdk-native-ios.
 s.library      = 'stdc++', 'z', 'System', 'stdc++.6', 'xml2.2', 'c++', 'stdc++.6.0.9', 'xml2'
 s.framework    = 'MediaPlayer', 'GoogleCast', 'SystemConfiguration', 'QuartzCore', 'CoreFoundation', 'AVFoundation', 'AudioToolbox', 'CFNetwork', 'AdSupport', 'WebKit', 'MessageUI', 'Social', 'MediaAccessibility', 'Foundation', 'CoreGraphics', 'UIKit'
 
-s.xcconfig = {'FRAMEWORK_SEARCH_PATHS' => '$(PODS_ROOT)/google-cast-sdk/GoogleCastFramework-2.6.1-Release',
+s.xcconfig = {'FRAMEWORK_SEARCH_PATHS' => '$(PODS_ROOT)/google-cast-sdk/GoogleCastSDK-2.6.1-Release',
               'OTHER_LDFLAGS' => '-ObjC -all_load'}
 
 s.dependency 'google-cast-sdk'
