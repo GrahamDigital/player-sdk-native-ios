@@ -47,10 +47,6 @@ static NSString *StatusKeyPath = @"status";
             [parentView.layer addSublayer:_layer];
         }
         
-        [self addObserver:self
-               forKeyPath:RateKeyPath
-                  options:0
-                  context:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(videoEnded)
                                                      name:AVPlayerItemDidPlayToEndTimeNotification
@@ -113,6 +109,10 @@ static NSString *StatusKeyPath = @"status";
         [self.currentItem removeObserver:self forKeyPath:StatusKeyPath context:nil];
     }
     AVPlayerItem *item = [[AVPlayerItem alloc] initWithURL:playerSource];
+    [self addObserver:self
+           forKeyPath:RateKeyPath
+              options:0
+              context:nil];
     [item addObserver:self
            forKeyPath:StatusKeyPath
               options:0
