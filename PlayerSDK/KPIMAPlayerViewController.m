@@ -163,6 +163,7 @@
 - (void)adsLoader:(IMAAdsLoader *)loader failedWithErrorData:(IMAAdLoadingErrorData *)adErrorData {
     // Something went wrong loading ads. Log the error and play the content.
     NSLog(@"Error loading ads: %@", adErrorData.adError.message);
+    self.view.hidden = YES;
     [self.contentPlayer play];
 }
 
@@ -239,6 +240,7 @@
         AdEventsListener(AdsLoadErrorKey.nullVal);
     }
     NSLog(@"AdsManager error: %@", error.message);
+    self.view.hidden = true;
     [self.contentPlayer play];
 }
 
