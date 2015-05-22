@@ -12,7 +12,7 @@ s.summary      = "The Kaltura player-sdk-native component enables embedding the 
 #s.description  = <<-DESC
 #                 The Kaltura player-sdk-native component enables embedding the kaltura player into native environments.
 #                 DESC
-s.homepage     = "https://github.com/kaltura/player-sdk-native-ios"
+s.homepage     = "https://github.com/newmaniese/player-sdk-native-ios"
 
 
 
@@ -28,26 +28,24 @@ s.author             = { "Nissim Pardo" => "nissim.pardo@kaltura.com" }
 
 
 # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-s.platform     = :ios, "6.0"
+s.platform     = :ios, "7.1"
 
 
 
 # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-s.source       = { :git => 'https://github.com/kaltura/player-sdk-native-ios.git', :tag => 'v1.1' }
+s.source       = { :git => 'https://github.com/newmaniese/player-sdk-native-ios.git' }
 s.library      = 'stdc++', 'z', 'System', 'stdc++.6', 'xml2.2', 'c++', 'stdc++.6.0.9', 'xml2'
 s.framework    = 'MediaPlayer', 'GoogleCast', 'SystemConfiguration', 'QuartzCore', 'CoreFoundation', 'AVFoundation', 'AudioToolbox', 'CFNetwork', 'AdSupport', 'WebKit', 'MessageUI', 'Social', 'MediaAccessibility', 'Foundation', 'CoreGraphics', 'UIKit'
 
-s.xcconfig = {'FRAMEWORK_SEARCH_PATHS' => '$(PODS_ROOT)/google-cast-sdk/GoogleCastFramework-2.3.0-Release',
-                    'OTHER_LDFLAGS' => '-ObjC -all_load'}
+s.xcconfig = {'OTHER_LDFLAGS' => '-ObjC -all_load'}
 
-s.dependency 'google-cast-sdk', '2.3.0'
+s.dependency 'google-cast-sdk'
 s.dependency 'GoogleAds-IMA-iOS-SDK', '3.0.beta.11'
 s.requires_arc = true
 
 
 # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
-s.source_files  = "PlayerSDK/**/*.{h,m}", "PlayerSDK/PlayerSDK/**/*.{h,m}"
-s.vendored_library = 'PlayerSDK/libWViPhoneAPI.a'
+s.source_files  = "PlayerSDK/*.{h,m}", "PlayerSDK/**/*.{h,m}"
 #s.exclude_files = "Classes/Exclude"
 
 # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
