@@ -57,7 +57,11 @@
     [[KArchiver shared] contentOfURL:request.URL.absoluteString
                           completion:^(NSData *content, NSError *error) {
                               dispatch_async(dispatch_get_main_queue(), ^{
-                                  [self loadData:content
+                                  NSString* htmlString = [[NSString alloc] initWithData:content encoding:NSUTF8StringEncoding];
+                                  NSString *cssString = @"video::-webkit-media-controls\n{\n display:none !important\n}";
+                                  htmlString = [htmlString stringByReplacingOccurrencesOfString:@"<style type=\"text/css\">" withString:[NSString stringWithFormat:@"<style type=\"text/css\">\n%@",cssString]];
+                                  NSData *data = [htmlString dataUsingEncoding:NSUTF8StringEncoding];
+                                  [self loadData:data
                                         MIMEType:@"text/html"
                                 textEncodingName:@"UTF-8"
                                          baseURL:request.URL];
