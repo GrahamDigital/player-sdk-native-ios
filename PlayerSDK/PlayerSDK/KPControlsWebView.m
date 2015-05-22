@@ -105,15 +105,6 @@ shouldStartLoadWithRequest:(NSURLRequest *)request
     return YES;
 }
 
-
-        NSLog(@"checkIsIframeUrl returning NO");
-        
-        return NO;
-    }
-
-    return YES;
-}
-
 // Call this function when you have results to send back to javascript callbacks
 // callbackId : int comes from handleCall function
 // args: list of objects to send to the javascript callback
