@@ -41,7 +41,7 @@ s.xcconfig = {'FRAMEWORK_SEARCH_PATHS' => '$(PODS_ROOT)/google-cast-sdk/GoogleCa
               'OTHER_LDFLAGS' => '-ObjC -all_load'}
 
 s.dependency 'google-cast-sdk'
-s.dependency 'GoogleAds-IMA-iOS-SDK-For-AdMob', "3.0.beta.11"
+s.dependency 'GoogleAds-IMA-iOS-SDK-For-AdMob', "3.0.beta.12"
 s.requires_arc = true
 
 
