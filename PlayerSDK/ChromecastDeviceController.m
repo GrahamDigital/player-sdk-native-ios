@@ -61,14 +61,7 @@ static NSString *const kReceiverAppID = @"DB6462E9";  //Replace with your app id
     }
 
     // Initialize device scanner
-    self.deviceScanner = [[GCKDeviceScanner alloc] init];
-     
-    // Create Device filter that only shows devices that can run your app.
-    // This allows you to publish your app to the Apple App store before before publishing in Cast console.
-    // Once the app is published in Cast console the cast icon will begin showing up on ios devices.
-    // If an app is not published in the Cast console the cast icon will only appear for whitelisted dongles
-    self.deviceScanner.filterCriteria = [GCKFilterCriteria criteriaForAvailableApplicationWithID:kReceiverAppID];
-
+    self.deviceScanner = [[GCKDeviceScanner alloc] initWithFilterCriteria:[GCKFilterCriteria criteriaForAvailableApplicationWithID:kReceiverAppID]];
     
     _queue = dispatch_queue_create("com.google.sample.Chromecast", NULL);
 
@@ -77,11 +70,11 @@ static NSString *const kReceiverAppID = @"DB6462E9";  //Replace with your app id
 }
 
 - (BOOL)isConnected {
-  return self.deviceManager.isConnected;
+  return (self.deviceManager.connectionState == GCKConnectionStateConnected);
 }
 
 - (BOOL)isPlayingMedia {
-  return self.deviceManager.isConnected && self.mediaControlChannel &&
+  return (self.deviceManager.connectionState == GCKConnectionStateConnected) && self.mediaControlChannel &&
          self.mediaControlChannel.mediaStatus && (self.playerState == GCKMediaPlayerStatePlaying ||
                                                   self.playerState == GCKMediaPlayerStatePaused ||
                                                   self.playerState == GCKMediaPlayerStateBuffering);
@@ -349,7 +342,7 @@ static NSString *const kReceiverAppID = @"DB6462E9";  //Replace with your app id
          mimeType:(NSString *)mimeType
         startTime:(NSTimeInterval)startTime
          autoPlay:(BOOL)autoPlay {
-  if (!self.deviceManager || !self.deviceManager.isConnected) {
+  if (!self.deviceManager || !(self.deviceManager.connectionState == GCKConnectionStateConnected)) {
     return NO;
   }
 
