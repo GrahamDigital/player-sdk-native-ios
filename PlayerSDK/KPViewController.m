@@ -602,7 +602,7 @@ typedef NS_ENUM(NSInteger, KPActionType) {
     return YES;
 }
 
--(NSUInteger)supportedInterfaceOrientations
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskAll;
 
